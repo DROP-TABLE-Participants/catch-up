@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=catchup
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "50432:5432"
+
+  server:
+    build: server
+    command: sh -c 'python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - ./server:/code
+    ports:
+      - "8000:8000"
+    restart: always
+    environment:
+      - DB_NAME=catchup
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+volumes:
+  data:
