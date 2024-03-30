@@ -15,7 +15,7 @@ services:
   server:
     build: server
     env_file: .env
-    command: sh -c 'python manage.py runserver 0.0.0.0:8000'
+    command: sh -c 'gunicorn --bind 0.0.0.0:8000 --chdir server server.wsgi'
     volumes:
       - ./server:/code
     ports:

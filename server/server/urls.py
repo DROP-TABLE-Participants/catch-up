@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.conf.urls.static import static
+from django.http import HttpResponse
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 from . import settings
 
 urlpatterns = [
+    path('', lambda request: HttpResponse("Welcome to CatchUp API", content_type="text/plain")),
     path('admin/', admin.site.urls),
     path("api/", include("products.urls")),
     path("api/", include("scrapers.urls")),
