@@ -25,11 +25,12 @@
     // min-width: 11rem;
     // min-height: 12rem;
     align-items: center;
+    justify-content: center;
     margin: 0.5rem;
     padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background: #000;
+    border-radius: 1.125rem;
+    border: 1px solid #E3E3E3;
+    background: #FFF;
   }
   
   .product-image {
@@ -42,9 +43,12 @@
   }
   
   .product-name {
-    font-size: 1rem;
-    color: white;
-    margin: 0;
+    color: #000;
+    font-family: "Hanken Grotesk";
+    font-size: 1.41175rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   </style>
   

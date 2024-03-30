@@ -9,7 +9,6 @@
             <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
             <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
             <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            
         </section>
     </div>
 </template>
@@ -66,7 +65,7 @@ const navigateToAddItem = () => {
   .inventory-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-    grid-gap: 1rem;
+
     align-items: start;
 
   }

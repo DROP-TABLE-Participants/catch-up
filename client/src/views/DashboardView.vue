@@ -1,15 +1,13 @@
 <template>
 <div class="dashboard-container">
-    <h1>Dashboard</h1>
-    
-    <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'"/>
+    <OverviewCard/>
     
     <TrendFluctuationSection/>
 </div>
 </template>
 
 <script lang="ts" setup>
-import ProductTrendCard from '../components/ProductTrendCard.vue';
+import OverviewCard from '../components/OverviewCard.vue';
 import TrendFluctuationSection from '../components/sections/TrendFluctuationSection.vue';
 </script>
 
