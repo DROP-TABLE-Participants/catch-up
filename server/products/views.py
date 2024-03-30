@@ -1,12 +1,8 @@
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
 from rest_framework import permissions
 from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
-
-from gpt.services.name_serializer import name_serializer
 
 from .models import Product
 from .serializers import ProductSerializer
