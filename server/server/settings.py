@@ -19,7 +19,7 @@ MEDIA_URL = '/media/'
 SECRET_KEY = 'django-insecure-vx=h&@d!(im!!-r)^$e!&%kzferzcn2!x3a!5*i-%lb*%izhfh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "catchupserver.azurewebsites.net",
