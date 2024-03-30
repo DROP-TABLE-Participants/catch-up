@@ -10,23 +10,16 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'ProductCardComponent',
-    props: {
-        title: {
-            type: String,
-            required: true
-        },
-        roundText: {
-            type: String,
-            required: true
-        }
-    }
-}
+<script lang="ts" setup>
+import { defineProps } from 'vue';
+
+const props = defineProps<{
+    title: string,
+    roundText, string,
+}>();
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .product-card {
     
 }

@@ -3,9 +3,7 @@ import LoginView from './views/LoginView.vue';
 </script>
 
 <template>
-  <div>
-   <LoginView />
-  </div>
+  <RouterView />
 </template>
 
 <style scoped lang="scss">
