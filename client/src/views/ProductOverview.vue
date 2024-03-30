@@ -4,7 +4,7 @@
             <button @click="navigateToItems" class="back-button">
                 <BackArrowIcon />
             </button>
-            <h1>Name prop</h1>
+            <h1 v-if="product">{{product.name}}</h1>
         </header>
         
         <section class="trend-section">
@@ -23,18 +23,29 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, type Ref } from 'vue';
 import Chart from 'chart.js/auto';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import BackArrowIcon from '../components/icons/BackArrowIcon.vue';
 import GaugeChart from '../components/GaugeChart.vue';
+import productService from '../services/product-service';
 
+const route = useRoute();
 const router = useRouter();
+
 const navigateToItems = () => {
   router.push('/items');
 };
 
 const chartRef = ref<HTMLCanvasElement | null>(null);
+
+const product: Ref<any> = ref();
+
+onMounted(async ()=>{
+  product.value = (await productService.getProductById(+route.params.id)).data;
+
+  console.log((await productService.getProductTrendHistory(+route.params.id)).data);
+})
 
 onMounted(() => {
   if (!chartRef.value) return;

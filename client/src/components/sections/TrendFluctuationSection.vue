@@ -5,9 +5,9 @@
     </div>
 
     <div class="product-trend-cards-container">
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isAccent="true"/>
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'"/>
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'"/>
+        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isAccent="true" :isGrowthUp="true"/>
+        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isGrowthUp="false"/>
+        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isGrowthUp="false"/>
     </div>
 </div>
 </template>

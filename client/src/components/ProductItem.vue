@@ -24,19 +24,22 @@
     // min-height: 12rem;
     align-items: center;
     justify-content: center;
-    margin: 0.5rem;
     padding: 1rem;
     border-radius: 1.125rem;
     border: 1px solid #E3E3E3;
     background: #FFF;
+
+    .product-image {
+      max-width: 100%;
+      margin-bottom: 1rem;
+      height: 80%;
+      object-fit: cover;
+    }
   }
   
-  .product-image {
-    max-width: 100%;
-    margin-bottom: 1rem;
-  }
   
   .product-details {
+    height: 20%;
     text-align: center;
   }
   

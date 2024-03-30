@@ -9,7 +9,7 @@
         v-for="item in products"
         :key="item.id" 
         :item="item"
-        @click="navigateToProductOverview($event)"
+        @click="navigateToProductOverview(item.id)"
       />
             
         </section>
@@ -26,6 +26,7 @@ let products: Ref<any> = ref();
 
 onMounted(async ()=>{
     products.value = (await productService.getAllProducts()).data;
+    console.log(products.value)
 })
 
 const router = useRouter();
@@ -35,8 +36,8 @@ const navigateToAddItem = () => {
 };
 
 
-const navigateToProductOverview = (item: any) => {
-  router.push(`/productOverview/${item.id}`);
+const navigateToProductOverview = (id: any) => {
+  router.push({name: 'productView', params: {id: id}});
 };
 
 
@@ -80,7 +81,8 @@ const navigateToProductOverview = (item: any) => {
   .inventory-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
-
+    row-gap: 1rem;
+    column-gap: 1rem;
     align-items: start;
 
   }

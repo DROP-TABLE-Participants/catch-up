@@ -1,6 +1,6 @@
 <template>
     <div class="tag-container" :class="isGrowthUp ? 'accent' : 'secondary'">
-        <p>{{percentage}}</p>
+        <p>{{percentage}}%</p>
         <GrowthArrowIcon :class="isGrowthUp ? '' : 'negative'"/>
     </div>
 </template>
@@ -20,10 +20,11 @@ const props = defineProps<{
 .tag-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     box-sizing: border-box;
-    padding: .5rem .5rem;
+    padding: .5rem 1rem;
+    gap: 1rem;
     border-radius: 50rem;
     width: fit-content;
     height: fit-content;

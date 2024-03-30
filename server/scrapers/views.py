@@ -74,7 +74,7 @@ class HistoryViewSet(ViewSet):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            objects = History.objects.get(product=pk)
+            objects = History.objects.filter(product__id=pk)
             return Response(HistorySerializer(objects, many=True).data)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)

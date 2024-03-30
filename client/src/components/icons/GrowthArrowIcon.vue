@@ -11,7 +11,7 @@
 <style lang="scss" scoped>
 
 .negative {
-    transform: translate(180deg);
+    transform: rotate(180deg);
     path {
         fill: #FF000F;
     }
