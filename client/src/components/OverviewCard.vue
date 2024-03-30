@@ -17,7 +17,7 @@ onMounted(()=>{
     new Chart(ctx as HTMLCanvasElement, {
       type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
         datasets: [{
           label: '# of Votes',
           data: [12, 19, 3, 5, 2, 3],

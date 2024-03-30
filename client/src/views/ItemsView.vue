@@ -6,7 +6,7 @@
         </header>
         <section class="inventory-grid">
           <ProductItem
-        v-for="(item) in inventory"
+        v-for="item in products"
         :key="item.id" 
         :item="item"
         @click="navigateToProductOverview($event)"
@@ -17,16 +17,18 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted, type Ref, ref } from 'vue';
 import ProductItem from '../components/ProductItem.vue';
 import { useRouter } from 'vue-router';
+import productService from '../services/product-service';
 
+let products: Ref<any> = ref();
+
+onMounted(async ()=>{
+    products.value = (await productService.getAllProducts()).data;
+})
 
 const router = useRouter();
-
-const inventory = [
-
-  { id: '1', name: 'Product 1', image: 'link-to-image' },
-];
 
 const navigateToAddItem = () => {
   router.push('/addItem'); 

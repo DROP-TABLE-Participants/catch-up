@@ -1,6 +1,6 @@
 <template>
     <div class="product-item">
-      <img :src="props.item.image" :alt="props.item.name" class="product-image" />
+      <img :src="BASE_PATH + props.item.image_url" :alt="props.item.name" class="product-image" />
       <div class="product-details">
         <h3 class="product-name">{{ props.item.name }}</h3>
       </div>
@@ -9,12 +9,10 @@
   
   <script setup lang="ts">
   import { defineProps } from 'vue';
-  
+  import { BASE_PATH } from '../api/base';
+
   const props = defineProps< {
-    item: {
-      image: string,
-      name: string
-    }
+    item: any,
 }>();
   </script>
   

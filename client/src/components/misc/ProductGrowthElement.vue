@@ -1,13 +1,13 @@
 <template>
     <div class="tag-container" :class="isGrowthUp ? 'accent' : 'secondary'">
         <p>{{percentage}}</p>
-        <!-- <IconUp v-if="isGrowthUp"/>
-        <IconDown v-else/> -->
+        <GrowthArrowIcon :class="isGrowthUp ? '' : 'negative'"/>
     </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps } from 'vue';
+import GrowthArrowIcon from '../icons/GrowthArrowIcon.vue';
 
 const props = defineProps<{
     percentage: number,

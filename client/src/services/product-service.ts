@@ -1,45 +1,31 @@
 import { AuthApi, Register, TokenObtainPair, TokenRefresh } from "../api";
-import { AxiosResponse } from "axios";
+import axios, { AxiosPromise, AxiosResponse } from "axios";
 import { WebApiService } from "./web-api-service";
+import { BASE_PATH } from "../api/base";
 
-export class AuthenticationService extends WebApiService {
+export class ProductService extends WebApiService {
 
-    authApi: AuthApi;
+  products: Array<any> | null;
 
   constructor() {
     super();
-    this.authApi = new AuthApi();
+    this.products = null;
   }
 
-  public async makeLoginRequest(username: string, password: string): Promise<AxiosResponse<TokenObtainPair, any>> {
-    let tokenObtainPair =  {
-        username,
-        password
-    } as TokenObtainPair;
-    console.log(tokenObtainPair);
+  public async getAllProducts(): Promise<Array<any> | null> {
+    if(this.products) {
+      return this.products;
+    }
 
-    return await this.authApi.authLoginCreate(tokenObtainPair, this.generateHeader());
+    this.products = await axios.get(BASE_PATH + '/api/products/', this.generateHeader());
+
+    return this.products;
   }
 
-  public async makeRegisterRequest(username: string, email: string, password: string, password2: string): Promise<AxiosResponse<Register, any>> {
-    let register = {
-        username,
-        email,
-        password,
-        password2
-    } as Register;
-
-    return await this.authApi.authRegisterCreate(register, this.generateHeader());
-  }
-
-  public async renewToken(access: string, refresh: string): Promise<AxiosResponse<TokenRefresh, any>> {
-    let tokenRefresh = {
-        access,
-        refresh,
-    } as TokenRefresh;
-    return await this.authApi.authRefreshTokenCreate(tokenRefresh, this.generateHeader());
+  public async createProduct(name: string, image?: Blob): AxiosPromise<any> {
+    return await axios.postForm(BASE_PATH + '/api/product/', {name, image_url: image}, this.generateHeader());
   }
 }
 
-const authenticationService = new AuthenticationService();
-export default authenticationService;
+const productService = new ProductService();
+export default productService;
