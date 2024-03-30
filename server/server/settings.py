@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'authentication.apps.AuthConfig',
     'products',
-    'gpt'
+    'gpt',
     'corsheaders',
 ]
 
