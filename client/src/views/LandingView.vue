@@ -170,23 +170,26 @@
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 20px;
+    gap: 10px;
 
     &__links {
       margin-top: 10px;
     }
 
     &__button {
-      margin-top: 10px;
+      display: none;
+      margin-top: 20px;
     }
   }
 
   .content {
     &__text {
       .heading {
-        font-size: 1.5rem;
-        width: 100%;
+        font-size: 2.2rem;
+        width: 80%;
+        margin-left: 10%;
       }
 
       .description {
@@ -202,7 +205,7 @@
       :last-child {
         width: 100%;
         height: auto;
-        font-size: 1rem;
+        font-size: 1.3rem;
       }
     }
   }
