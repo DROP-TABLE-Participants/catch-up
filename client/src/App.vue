@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import LoginView from './views/LoginView.vue';
+import Navbar from './components/Navbar.vue';
 </script>
 
 <template>
-  <RouterView />
+    <RouterView />
+
+  <Navbar/>
 </template>
 
 <style scoped lang="scss">

@@ -43,9 +43,16 @@ export default {
 
 <style scoped lang="scss"> 
 .login-container {
-    max-width: 300px;
-    margin: 0 auto;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    &__form {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0 2rem;
+    }
 
     &__logo {
         img {
@@ -59,10 +66,12 @@ export default {
     }
 
     &__input-group {
+        width: 100%;
        
 
         input {
             width: 100%;
+            box-sizing: border-box;
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #C8C0C0;
@@ -99,6 +108,7 @@ export default {
             font-size: 12px;
             color: #00BAB9;
             text-decoration: none;
+            text-align: center;
         }
     }
 }
