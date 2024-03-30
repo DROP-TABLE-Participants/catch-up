@@ -1,8 +1,8 @@
 <template>
-    <div class="product-card" :class="isAccent ? 'main' : ''">
+    <div class="product-card" :class="props.isAccent ? 'main' : ''">
         <div class="title-container">
-            <h2 class="title">{{ title }}</h2>
-            <ArrowLinkIcon :class="isAccent ? 'light' : ''"/>
+            <h2 class="title">{{ props.title }}</h2>
+            <ArrowLinkIcon :class="props.isAccent ? 'light' : ''"/>
         </div>
         <ProductGrowthElement :percentage="1.24123" :isGrowthUp="true"/>
     </div>
@@ -13,9 +13,9 @@ import { defineProps } from 'vue';
 import ArrowLinkIcon from './icons/ArrowLinkIcon.vue';
 import ProductGrowthElement from './misc/ProductGrowthElement.vue';
 
-  defineProps<{
+  const props = defineProps<{
     title: string,
-    roundText, string,
+    roundText: string,
     isAccent?: boolean,
 }>();
 </script>

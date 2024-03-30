@@ -1,8 +1,8 @@
 <template>
     <div class="product-item">
-      <img :src="item.image" :alt="item.name" class="product-image" />
+      <img :src="props.item.image" :alt="props.item.name" class="product-image" />
       <div class="product-details">
-        <h3 class="product-name">{{ item.name }}</h3>
+        <h3 class="product-name">{{ props.item.name }}</h3>
       </div>
     </div>
   </template>

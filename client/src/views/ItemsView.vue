@@ -6,7 +6,7 @@
         </header>
         <section class="inventory-grid">
           <ProductItem
-        v-for="(item, index) in inventory"
+        v-for="(item) in inventory"
         :key="item.id" 
         :item="item"
         @click="navigateToProductOverview($event)"
@@ -33,7 +33,7 @@ const navigateToAddItem = () => {
 };
 
 
-const navigateToProductOverview = (item) => {
+const navigateToProductOverview = (item: any) => {
   router.push(`/productOverview/${item.id}`);
 };
 
