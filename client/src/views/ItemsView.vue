@@ -37,8 +37,16 @@ import ProductItem from '../components/ProductItem.vue';
     }
 
     .add-button {
+      border: 1px solid #CFCFCF;
       font-size: 1.5rem;
-    
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
     }
   }
 
