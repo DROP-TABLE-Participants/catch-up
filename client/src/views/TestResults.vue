@@ -1,7 +1,9 @@
 <template>
     <div class="navbar">
         <div class="navbar__logo">
-            <img src="../assets/logo.png" alt="logo" />
+            <router-link to="/" class="navbar__logo">
+                <img src="../assets/logo.png" alt="logo"/>
+            </router-link>
         </div>
         <div class="navbar__links">
             <router-link to="/pricing">Pricing</router-link>
@@ -33,7 +35,7 @@ var heading = route.params.productName;
     * {
       font-family: 'Hanken Grotesk', sans-serif;
     }
-    
+
     .navbar {
   display: flex;
   justify-content: space-around;
@@ -168,17 +170,19 @@ var heading = route.params.productName;
 }
 
 @media (max-width: 768px) {
-  .navbar {
+    .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 20px;
+    gap: 10px;
 
     &__links {
       margin-top: 10px;
     }
 
     &__button {
-      margin-top: 10px;
+      display: none;
+      margin-top: 20px;
     }
   }
 

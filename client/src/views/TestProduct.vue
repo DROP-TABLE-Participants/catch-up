@@ -1,7 +1,9 @@
 <template>
     <div class="navbar">
         <div class="navbar__logo">
-            <img src="../assets/logo.png" alt="logo" />
+          <router-link to="/" class="navbar__logo">
+            <img src="../assets/logo.png" alt="logo"/>
+          </router-link>
         </div>
         <div class="navbar__links">
             <router-link to="/pricing">Pricing</router-link>
@@ -194,50 +196,51 @@ import router from '../router';
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 20px;
+    gap: 10px;
 
     &__links {
       margin-top: 10px;
     }
 
     &__button {
-      margin-top: 10px;
+      display: none;
+      margin-top: 20px;
     }
   }
 
   .content {
     &__text {
       .heading {
-        font-size: 1.5rem;
-        width: 100%;
+        font-size: 2.2rem;
+        width: 70%;
+        margin-left: 15%;
       }
 
       .description {
         font-size: 1rem;
-        width: 100%;
+        width: 70%;
+        margin-left: 15%;
+
+      }
+    }
+
+    &__input {
+      input {
+        width: 140%;
+        margin-left: -26%;
       }
     }
 
     &__buttons {
       flex-direction: column;
-      cursor: pointer;
 
-
-      :first-child {
+      :first-child,
+      :last-child {
         width: 100%;
         height: auto;
-        font-size: 1rem;
-
-        button {
-          background: none;
-          color: inherit;
-          border: none;
-          padding: 0;
-          font: inherit;
-          cursor: pointer;
-          outline: inherit;
-        }
+        font-size: 1.3rem;
       }
     }
   }
