@@ -12,9 +12,6 @@ jobs:
   build:
     name: Build container image
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./server
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -27,5 +24,6 @@ jobs:
       - name: Build & Push
         uses: docker/build-push-action@v2
         with:
+          working-directory: ./server
           push: true
           tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.IMAGE_NAME }}:latest
