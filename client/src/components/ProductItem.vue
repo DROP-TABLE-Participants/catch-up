@@ -22,6 +22,8 @@
   .product-item {
     display: flex;
     flex-direction: column;
+    // min-width: 11rem;
+    // min-height: 12rem;
     align-items: center;
     margin: 0.5rem;
     padding: 1rem;

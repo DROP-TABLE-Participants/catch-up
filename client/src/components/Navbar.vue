@@ -1,14 +1,23 @@
 <template>
-<div class="nav-container">
-    <DashboardIcon/>
-    <ItemsIcon/>
-    <ItemsIcon/>
+<div class="nav-container"> 
+    <DashboardIcon @click="navigate('/dashboard')"/>
+    <ItemsIcon @click="navigate('/items')"/>
+    <AccountIcon @click="navigate('/account')"/>
 </div>
 </template>
 
 <script lang="ts" setup>
 import DashboardIcon from './icons/DashboardIcon.vue';
 import ItemsIcon from './icons/ItemsIcon.vue';
+import AccountIcon from './icons/AccountIcon.vue';
+import { useRouter } from 'vue-router';
+
+
+const router = useRouter();
+
+const navigate = (path: string) => {
+  router.push(path);
+};
 
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="add-items-container">
         <header>
-            <button class="add-items-container__back-button">
+            <button @click="navigateToItems" class="add-items-container__back-button">
                 <BackArrowIcon />
             </button>
             <h1 class="add-items-container__title">Add items</h1>
@@ -38,6 +38,14 @@
 
 <script lang="ts" setup>
 import BackArrowIcon from "../components/icons/BackArrowIcon.vue";
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const navigateToItems = () => {
+  router.push('/items');
+};
+
 </script>
 
 <style scoped lang="scss">
