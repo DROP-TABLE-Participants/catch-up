@@ -17,3 +17,4 @@ class History(models.Model):
     value = models.FloatField()
     date = models.DateField(default=datetime.now)
     source = models.CharField(max_length=7)
+    type_scrape = models.CharField(max_length=10, default="daily")
