@@ -1,7 +1,7 @@
 <template>
     <div class="login-container">
         <div class="login-container__logo">
-            <img src="../assets/logo.svg" alt="Logo">
+            <img src="../assets/logo.png" alt="Logo">
         </div>
         <h2 class="login-container__title">Login to continue</h2>
         <form @submit.prevent="submitForm" class="login-container__form">
@@ -11,7 +11,7 @@
             <div class="login-container__input-group">
                 <input type="password" v-model="form.password" placeholder="Password" required>
             </div>
-            <button type="submit" class="login-container__button">Login</button>
+            <button type="submit" class="login-container__button"><span>Sign in</span> <ArrowLinkIcon class="light"/></button>
         </form>
         <div class="login-container__signup-container">
             Don’t have an account?
@@ -26,6 +26,7 @@ import storageService from "../services/storage-service";
 import authenticationService from "../services/authentication-service";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import ArrowLinkIcon from "../components/icons/ArrowLinkIcon.vue";
 
 
 const form = ref({
@@ -78,10 +79,11 @@ async function submitForm() {
         input {
             width: 100%;
             box-sizing: border-box;
-            padding: 10px;
+            padding: 1.2rem 2rem;
             margin: 5px 0;
-            border: 1px solid #C8C0C0;
-            border-radius: 65px;
+            border-radius: 1.5rem;
+            border: 2px solid #3741F2;
+            background: #FFF;
         }
     }
 
@@ -94,14 +96,25 @@ async function submitForm() {
     }
 
     &__button {
+        color: #FFF;
+        font-family: "Hanken Grotesk";
+        font-size: 1.23069rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+
         width: 100%;
         margin-top: 2rem;
-        padding: 10px;
+        padding: 1.2rem 2rem;
         border: none;
-        border-radius: 10px;
-        background: linear-gradient(90deg, #363FF2 0%, #3CA6C2 55.5%, #40F99B 100%);
+        border-radius: 3.4375rem;
+        background: #3741F2;
         color: white;
         cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
     &__signup-container {
