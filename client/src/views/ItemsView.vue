@@ -5,10 +5,12 @@
             <button @click="navigateToAddItem" class="add-button">+</button>
         </header>
         <section class="inventory-grid">
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
+          <ProductItem
+        v-for="(item, index) in inventory"
+        :key="item.id" 
+        :item="item"
+        @click="navigateToProductOverview($event)"
+      />
             
         </section>
     </div>
@@ -21,8 +23,18 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
+const inventory = [
+
+  { id: '1', name: 'Product 1', image: 'link-to-image' },
+];
+
 const navigateToAddItem = () => {
   router.push('/addItem'); 
+};
+
+
+const navigateToProductOverview = (item) => {
+  router.push(`/productOverview/${item.id}`);
 };
 
 
