@@ -32,7 +32,7 @@ import ItemsIcon from './icons/ItemsIcon.vue';
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: .5rem 3rem;
+    padding: 2rem 3rem;
 }
 
 </style>
