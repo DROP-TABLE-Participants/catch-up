@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'products',
     'gpt',
     'scrapers',
+    'testing',
     'corsheaders',
 ]
 
