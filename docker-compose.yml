@@ -15,17 +15,17 @@ services:
   server:
     build: server
     env_file: .env
-    command: sh -c 'gunicorn --bind 0.0.0.0:8000 --chdir server server.wsgi -t 0'
+    command: sh -c 'gunicorn --bind 0.0.0.0:8000 --chdir server server.wsgi'
     volumes:
       - ./server:/code
     ports:
       - "8000:8000"
     restart: always
     environment:
-      - DB_NAME=postgres
-      - DB_USER=catchupadmin
-      - DB_PASSWORD=R3pt1l123
-      - DB_HOST=catchup.postgres.database.azure.com
+      - DB_NAME=catchup
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
       - DB_PORT=5432
     depends_on:
       - db
