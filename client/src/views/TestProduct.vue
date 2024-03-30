@@ -36,6 +36,10 @@
 </script>
 
 <style scoped lang="scss">
+    * {
+      font-family: 'Hanken Grotesk', sans-serif;
+    }
+
     .navbar {
       display: flex;
       justify-content: space-around;
