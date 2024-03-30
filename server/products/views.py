@@ -1,5 +1,4 @@
 from rest_framework import permissions
-from rest_framework.decorators import action
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
@@ -17,19 +16,33 @@ class ProductViewSet(ModelViewSet):
     """
     A simple ViewSet for listing or retrieving products.
     """
-    def list(self, request):
+    def list(self, request, *args, **kwargs):
         # get all products
-        return Response(ProductSerializer(Product.objects.all(), many=True).data)
-        #return Response("""name_serializer("Смартфон Samsung Galaxy A34, 6GB, 128GB, Awesome Graphite - SM-A346BZKAEUE")""")
+        user_id = self.request.user.id
+        return Response(ProductSerializer(Product.objects.filter(owner=user_id), many=True).data)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    # route to delete all
-    @action(methods=["DELETE"], detail=False)
-    def delete(self, request):
-        delete_albums = self.queryset.all()
+    def perform_update(self, serializer):
+        user_id = self.request.user.id
+        if serializer.instance.owner.id != user_id:
+            return Response({"error": "You are not the owner of this product"}, status=403)
+        serializer.save(owner=self.request.user)
+        return Response(serializer.data)
 
-        delete_albums.delete()
-        return Response(self.serializer_class(delete_albums, many=True).data)
+    def perform_destroy(self, instance):
+        user_id = self.request.user.id
+        if instance.owner.id != user_id:
+            return Response({"error": "You are not the owner of this product"}, status=403)
+        instance.delete()
+        return Response(status=204)
+
+    def retrieve(self, request, *args, **kwargs):
+        user_id = self.request.user.id
+        instance = self.get_object()
+        if instance.owner.id != user_id:
+            return Response({"error": "You are not the owner of this product"}, status=403)
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
