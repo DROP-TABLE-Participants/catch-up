@@ -66,3 +66,16 @@ class HistoryViewSet(ViewSet):
         objects = History.objects.filter(type_scrape="weekly").all()
 
         return Response(HistorySerializer(objects, many=True).data)
+
+    @action(methods=['GET'], detail=False, url_path='product')
+    def list_by_product(self, request: Request):
+        pk = request.query_params.get('pk')
+        if pk is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            objects = History.objects.get(product=pk)
+            return Response(HistorySerializer(objects, many=True).data)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
