@@ -6,12 +6,11 @@
         <h2 class="login-container__title">Login to continue</h2>
         <form @submit.prevent="submitForm" class="login-container__form">
             <div class="login-container__input-group">
-                <input type="email" v-model="user.email" placeholder="Email" required>
+                <input type="username" v-model="form.username" placeholder="Username" required>
             </div>
             <div class="login-container__input-group">
-                <input type="password" v-model="user.password" placeholder="Password" required>
+                <input type="password" v-model="form.password" placeholder="Password" required>
             </div>
-            <a href="#" class="login-container__forgot-password">Forgot password?</a>
             <button type="submit" class="login-container__button">Login</button>
         </form>
         <div class="login-container__signup-container">
@@ -21,24 +20,31 @@
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            user: {
-                email: '',
-                password: ''
-            }
-        };
-    },
-    methods: {
-        submitForm() {
-            // Handle form submission
-            console.log(this.user);
-            // TODO: Implement your login logic here
-        }
-    }
-};
+
+<script setup lang="ts">
+import storageService from "../services/storage-service";
+import authenticationService from "../services/authentication-service";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+
+const form = ref({
+  username: '',
+  password: '',
+});
+
+const router = useRouter();
+
+async function submitForm() {
+  authenticationService.makeLoginRequest(form.value.username, form.value.password).then((response) => {
+    storageService.saveAccessToken(response.data.access);
+    storageService.saveRefreshToken(response.data.refresh);
+    storageService.saveTokenExpiresDate((Date.now() + 29 * 60000).toString());
+    router.push("/dashboard");
+  }).catch((error) => {
+    console.log(error);
+  });
+}
 </script>
 
 <style scoped lang="scss"> 
