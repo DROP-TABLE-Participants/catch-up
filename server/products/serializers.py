@@ -4,6 +4,7 @@ from .models import Product
 
 from gpt.services.name_serializer import name_serializer
 
+
 class ProductSerializer(serializers.ModelSerializer):
     name = serializers.CharField()
     image_url = serializers.ImageField(required=False)

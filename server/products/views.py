@@ -18,9 +18,7 @@ class ProductViewSet(ModelViewSet):
     A simple ViewSet for listing or retrieving products.
     """
     def list(self, request):
-        # get all products
         return Response(ProductSerializer(Product.objects.all(), many=True).data)
-        #return Response("""name_serializer("Смартфон Samsung Galaxy A34, 6GB, 128GB, Awesome Graphite - SM-A346BZKAEUE")""")
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

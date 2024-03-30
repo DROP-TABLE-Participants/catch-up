@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'authentication.apps.AuthConfig',
     'products',
     'gpt',
+    'scrapers',
     'corsheaders',
 ]
 
