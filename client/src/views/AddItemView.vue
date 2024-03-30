@@ -1,7 +1,9 @@
 <template>
     <div class="add-items-container">
         <header>
-            <button class="add-items-container__back-button">&lt;</button>
+            <button class="add-items-container__back-button">
+                <BackArrowIcon />
+            </button>
             <h1 class="add-items-container__title">Add items</h1>
         </header>
 
@@ -10,21 +12,23 @@
             <p class="add-items-container__drop-file-text">Or drop a file</p>
         </section>
 
-        <div class="middle-text">
-            <p>or add manually</p>
+        <div class="middle__text">
+            <p class="middle__text-text">or add manually</p>
         </div>
 
         <form @submit.prevent="submitForm" class="add-items-container__form">
             <section class="add-items-container__manual-add-section">
                 <div class="add-items-container__form-group">
                     <label for="itemName" class="add-items-container__label">Item Name</label>
-                    <input type="text" id="itemName" v-model="itemName" placeholder="name" class="add-items-container__input">
+                    <input type="text" id="itemName" v-model="itemName" placeholder="Name" class="add-items-container__input">
                 </div>
 
                 <div class="add-items-container__form-group">
-                    <label for="imageUpload" class="add-items-container__label">Image</label>
-                    <input type="file" id="imageUpload" @change="handleFileUpload" class="add-items-container__file-input">
+                    <label for="itemName" class="add-items-container__label">Image</label>
+                    <input type="file" id="imageUpload" @change="handleFileUpload" class="add-items-container__file-input" placeholder="Upload a file">
+                    <label for="imageUpload" class="add-items-container__label--upload">Upload a file</label>
                 </div>
+
 
                 <button type="submit" class="add-items-container__submit-button">Add Item</button>
             </section>
@@ -32,8 +36,8 @@
     </div>
 </template>
 
-<script>
-
+<script lang="ts" setup>
+import BackArrowIcon from "../components/icons/BackArrowIcon.vue";
 </script>
 
 <style scoped lang="scss">
@@ -47,24 +51,21 @@
         align-items: center;
         margin-bottom: 2rem;
 
-        h1 {
-            padding-left: 1rem;
-            font-family: "Hanken Grotesk", sans-serif;
-            font-size: 1.5rem;
-        }
+     
 
         .add-items-container__back-button {
-            border: 1px solid #CFCFCF;
-            font-size: 1.5rem;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
+           border: none;
+           background: transparent;
         }
+
+        .add-items-container__title {
+            padding-left: 1rem;
+            font-size: 2rem;
+            font-family: "Hanken Grotesk";
+        }
+
+
     }
 
     .add-items-container__import-csv-section {
@@ -87,15 +88,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: .5rem;
-            border-radius: 25px;
+            padding: .5rem 1rem; 
+            border-radius: 1.5rem;
             
         }
 
         .add-items-container__drop-file-text {
-            font-size: 10px;
+            color: #585858;
+            font-family: Inter;
+            font-size: 0.62rem;
         }
     }
+
+
 
     .add-items-container__form {
         display: flex;
@@ -118,17 +123,46 @@
                 .add-items-container__label {
                     font-size: 1rem;
                     margin-bottom: 0.5rem;
+                    margin-left: 0.5rem;
+
+                    &--upload {
+                        font-size: 1rem;
+                        margin-bottom: 0.5rem;
+                        padding: 1rem;
+                        display: inline-block;
+                        border: 1px solid #CFCFCF;
+                        border-radius: 0.7rem;
+                        width: 100%; 
+                        text-align: center;
+                        cursor: pointer;
+                        background-color: #fff; 
+                        color: #9C8888; 
+                        box-sizing: border-box;
+                        
+                        
                 }
+            }
 
                 .add-items-container__input {
-                    padding: 0.5rem;
+                    box-sizing: border-box;
+                    padding: 1rem;
                     font-size: 1rem;
                     border: 1px solid #CFCFCF;
-                    border-radius: 5px;
+                    border-radius: 0.7rem;
                     width: 100%;
+
+                    &::placeholder {
+                        color: #9C8888;
+                    }
                 }
 
                 .add-items-container__file-input {
+                    width: 0.1px;
+                    height: 0.1px;
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
                     
                 }
             }
@@ -147,12 +181,19 @@
     }
 }
 
-.middle-text{
+.middle__text{
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 1rem;
     font-size: 10px;
     color: #000;
+
+    &-text{
+        font-size: .8rem;
+        font-family: Inter;
+        color: #000;
+        
+    }
 }
 </style>
