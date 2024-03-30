@@ -2,20 +2,42 @@
     <div class="inventory-page">
         <header>
             <h1>Your inventory</h1>
-            <button class="add-button">+</button>
+            <button @click="navigateToAddItem" class="add-button">+</button>
         </header>
         <section class="inventory-grid">
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
-            <ProductItem  :item="{name:'pes' , image: 'dadada'}"/>
+          <ProductItem
+        v-for="item in products"
+        :key="item.id" 
+        :item="item"
+        @click="navigateToProductOverview($event)"
+      />
             
         </section>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { onMounted, type Ref, ref } from 'vue';
 import ProductItem from '../components/ProductItem.vue';
+import { useRouter } from 'vue-router';
+import productService from '../services/product-service';
+
+let products: Ref<any> = ref();
+
+onMounted(async ()=>{
+    products.value = (await productService.getAllProducts()).data;
+})
+
+const router = useRouter();
+
+const navigateToAddItem = () => {
+  router.push('/addItem'); 
+};
+
+
+const navigateToProductOverview = (item: any) => {
+  router.push(`/productOverview/${item.id}`);
+};
 
 
 </script>
@@ -33,7 +55,12 @@ import ProductItem from '../components/ProductItem.vue';
     margin-bottom: 2rem;
 
     h1 {
-      font-size: 1.5rem;
+      color: #000;
+      font-family: "Hanken Grotesk";
+      font-size: 2.58888rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
     }
 
     .add-button {
@@ -52,14 +79,11 @@ import ProductItem from '../components/ProductItem.vue';
 
   .inventory-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
-    grid-gap: 1rem;
+    grid-template-columns: repeat(2, 1fr); 
+
     align-items: start;
 
-    @media (max-width: 768px) {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
   }
 }
-
 </style>
+

@@ -11,7 +11,11 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
+    "chart.js": "^4.4.2",
+    "chartjs-gauge": "^0.3.0",
     "vue": "^3.4.21",
+    "vue-chartjs": "^5.3.0",
+    "vue-gauge": "^1.0.3",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
