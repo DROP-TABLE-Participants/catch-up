@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
       - name: Build & Push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v5
         with:
-          working-directory: ./server
+          context: ./server
           push: true
           tags: ${{ secrets.ACR_ENDPOINT }}/${{ env.IMAGE_NAME }}:latest
