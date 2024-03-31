@@ -12,6 +12,34 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'mediafiles')
 # URL used to access the media
 MEDIA_URL = '/media/'
 
+#STATIC_LOCATION = "static"
+MEDIA_LOCATION = "media"
+
+AZURE_ACCOUNT_NAME = "catchupstorage"
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+#STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+AZURE_MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.azure_storage.AzureStorage",
+        "OPTIONS": {
+            "azure_container": "media",
+            "connection_string": os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+    "media": {
+        "BACKEND": "storages.backends.azure_storage.AzureStorage",
+        "OPTIONS": {
+            "azure_container": "media",
+            "connection_string": os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+        },
+    },
+}
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -19,7 +47,7 @@ MEDIA_URL = '/media/'
 SECRET_KEY = 'django-insecure-vx=h&@d!(im!!-r)^$e!&%kzferzcn2!x3a!5*i-%lb*%izhfh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "catchupserver.azurewebsites.net",

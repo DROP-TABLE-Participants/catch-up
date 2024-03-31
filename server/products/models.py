@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.db import models
 
 
@@ -5,7 +7,7 @@ from authentication.models import User
 
 
 def upload_to(instance, filename):
-    return 'images/{filename}'.format(filename=filename)
+    return '{filename}'.format(filename=str(uuid4()) + filename)
 
 
 class Product(models.Model):

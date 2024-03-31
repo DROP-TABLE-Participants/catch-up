@@ -11,12 +11,15 @@
         :item="item"
         @click="navigateToProductOverview(item.id)"
       />
-          <ProductItem
+      <!--
+
+        <ProductItem
         v-for="item in products"
         :key="item.id" 
         :item="item"
         @click="navigateToProductOverview(item.id)"
-      />
+        />
+      -->
             
         </section>
     </div>
