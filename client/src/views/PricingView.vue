@@ -1,19 +1,19 @@
 <template>
     <div class="navbar">
-    <div class="navbar__logo">
+      <div class="navbar__logo">
         <router-link to="/" class="navbar__logo">
-            <img src="../assets/logo.png" alt="logo"/>
+          <img src="../assets/logo.png" alt="logo" />
         </router-link>
+      </div>
+      <div class="navbar__links">
+        <router-link to="/pricing">Pricing</router-link>
+        <router-link to="/dashboard">Dashboard</router-link>
+        <router-link to="/test">Try it out</router-link>
+      </div>
+      <div class="navbar__button">
+        <router-link to="/login">Login</router-link>
+      </div>
     </div>
-    <div class="navbar__links">
-      <router-link to="/pricing">Pricing</router-link>
-      <router-link to="/dashboard">Dashboard</router-link>
-      <router-link to="/test">Try it out</router-link>
-    </div>
-    <div class="navbar__button">
-      <router-link to="/login">Login</router-link>
-    </div>
-  </div>
     <div class="pricing-page">
       <div class="pricing-card">
         <h2>Basic</h2>
@@ -50,66 +50,67 @@
   
   <style scoped lang="scss">
   * {
-        font-family: 'Hanken Grotesk', sans-serif;
-    }
-
-.navbar {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  width: 100vw;
-  margin-top: 40px;
-  max-width: 850px;
-
-  &__logo {
-    img {
-      width: 130px;
-    }
+    font-family: 'Hanken Grotesk', sans-serif;
   }
-
-  &__links {
+  
+  .navbar {
     display: flex;
-    gap: 2rem;
-
-    a {
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-
-      &:hover {
-        text-decoration: underline;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    max-width: 850px;
+    margin-top: 40px;
+  
+    &__logo {
+      img {
+        width: 130px;
+      }
+    }
+  
+    &__links {
+      display: flex;
+      gap: 2rem;
+  
+      a {
+        text-decoration: none;
+        color: #000;
+        font-weight: 500;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    &__button {
+      a {
+        padding: 0.5rem 1rem;
+        background-color: #00e99e;
+        color: #262626;
+        border-radius: 5px;
+        width: 40px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #3bf0b7;
+        }
       }
     }
   }
-
-  &__button {
-    a {
-      padding: 0.5rem 1rem;
-      background-color: #00E99E;
-      color: #262626;
-      border-radius: 5px;
-      width: 40px;
-      text-decoration: none;
-      transition: background-color 0.3s;
-
-      &:hover {
-        background-color: #3bf0b7;
-      }
-    }
-  }
-}
-
+  
   .pricing-page {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 20px;
-    margin-top: 200px;
+    margin-top: 50px;
   }
   
   .pricing-card {
-    width: 300px;
+    width: calc(33.33% - 20px);
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -157,12 +158,33 @@
   }
   
   @media (max-width: 768px) {
-    .pricing-page {
+    .navbar {
       flex-direction: column;
+      align-items: center;
+      &__button {
+        display: none;
+      a {
+        padding: 0.5rem 1rem;
+        background-color: #00e99e;
+        color: #262626;
+        border-radius: 5px;
+        width: 40px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+  
+        &:hover {
+          background-color: #3bf0b7;
+        }
+      }
+    }
+    }
+  
+    .navbar__links {
+      margin-top: 20px;
     }
   
     .pricing-card {
-      width: 100%;
+      width: calc(50% - 20px);
     }
   }
   </style>
