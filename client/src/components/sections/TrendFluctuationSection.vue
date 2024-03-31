@@ -13,7 +13,14 @@
 </template>
 
 <script lang="ts" setup>
+import { defineProps } from 'vue';
 import ProductTrendCard from '../ProductTrendCard.vue';
+
+const props = defineProps<{
+    products: any,
+}>();
+
+
 </script>
 
 <style lang="scss" scoped>

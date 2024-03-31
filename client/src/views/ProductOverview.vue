@@ -40,47 +40,65 @@ const navigateToItems = () => {
 const chartRef = ref<HTMLCanvasElement | null>(null);
 
 const product: Ref<any> = ref();
+const history: Ref<Array<any>> = ref([]);
+
+let chartLabels: Array<string> = [];
+let chartValues: Array<string> = [];
+
+let show: Ref<boolean> = ref(false);
+
 
 onMounted(async ()=>{
   product.value = (await productService.getProductById(+route.params.id)).data;
 
-  console.log((await productService.getProductTrendHistory(+route.params.id)).data);
+  history.value = (await productService.getProductTrendHistory(+route.params.id)).data;
+
+  history.value.forEach((record: any)=>{
+    chartLabels.push(record.date.replaceAll('-', '.'));
+    chartValues.push(record.value)
+  })
+  
+  setUpChart();
 })
 
-onMounted(() => {
-  if (!chartRef.value) return;
-  
-  const ctx = chartRef.value.getContext('2d');
-  if (!ctx) return;
+function setUpChart(){
+  Chart.defaults.borderColor = 'rgba(164, 195, 255, 0.50)';
+    Chart.defaults.color = '#000';
+    let ctx = document.getElementById('trendChart');
 
-  const gradientBg = ctx.createLinearGradient(0, 0, 0, ctx.canvas.clientHeight);
-  gradientBg.addColorStop(0, '#40F99B');
-  gradientBg.addColorStop(1, 'rgba(177, 185, 248, 0)');
+    new Chart(ctx as HTMLCanvasElement, {
+      type: 'line',
+      data: {
+        labels: chartLabels,
+        datasets: [{
+          label: 'G102',
+          data: chartValues,
+          borderWidth: 1,
+          tension: 0.4,
+          fill: true, 
+          backgroundColor: (context)=>{
+            if(!context.chart.chartArea) return;
+            const {ctx, data, chartArea: {top, bottom} } = context.chart;
+            const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
 
-  const trendChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: 'Today\'s Activity',
-        data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: gradientBg, // Use the gradient for the fill color
-        borderColor: 'rgba(135, 206, 250, 1)',
-        borderWidth: 1,
-        fill: true,
-        tension: 0.4, // Added to smooth the line
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
+
+            gradientBg.addColorStop(0, '#40F99B');
+            gradientBg.addColorStop(1, 'rgba(177, 185, 248, 0.00)');
+
+            return gradientBg;
+          },
+        }]
       },
-      responsive: true,
-    }
-  });
-});
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        responsive: true,
+      }
+    });
+};
 
 
 

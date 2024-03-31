@@ -11,6 +11,12 @@
         :item="item"
         @click="navigateToProductOverview(item.id)"
       />
+          <ProductItem
+        v-for="item in products"
+        :key="item.id" 
+        :item="item"
+        @click="navigateToProductOverview(item.id)"
+      />
             
         </section>
     </div>
@@ -84,6 +90,7 @@ const navigateToProductOverview = (id: any) => {
     row-gap: 1rem;
     column-gap: 1rem;
     align-items: start;
+    overflow-y: scroll;
 
   }
 }

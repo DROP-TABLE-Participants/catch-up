@@ -4,12 +4,33 @@ import Navbar from './components/Navbar.vue';
 </script>
 
 <template>
-    <RouterView />
-
-  <Navbar/>
+  <div class="site-wrapper">
+    <div class="content-container">
+      <RouterView />
+  
+      <Navbar/>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
+.site-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  overflow: hidden;
+  .content-container {
+    width: 100%;
+    height: 100vh;
+    max-width: 850px;
+    overflow: scroll;
+
+  }
+
+}
 .logo {
   height: 6em;
   padding: 1.5em;

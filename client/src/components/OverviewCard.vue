@@ -19,8 +19,26 @@ onMounted(()=>{
       data: {
         labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
         datasets: [{
-          label: '# of Votes',
+          label: 'G102',
           data: [7, 12, 10, 5, 12, 19, 3, 5, 2, 3, 10, 12],
+          borderWidth: 1,
+          tension: 0.4,
+          fill: true, 
+          backgroundColor: (context)=>{
+            if(!context.chart.chartArea) return;
+            const {ctx, data, chartArea: {top, bottom} } = context.chart;
+            const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+
+
+            gradientBg.addColorStop(0, '#40F99B');
+            gradientBg.addColorStop(1, 'rgba(177, 185, 248, 0.00)');
+
+            return gradientBg;
+          },
+        },
+        {
+          label: 'DT990 pro',
+          data: [5, 3, 6, 10, 9, 7, 10, 5, 2, 3, 10, 12],
           borderWidth: 1,
           tension: 0.4,
           fill: true, 
@@ -59,10 +77,12 @@ onMounted(()=>{
     background: #0038FF;
 
     box-sizing: border-box;
-    padding: 1rem;
+    padding: 2rem 1rem;
 
     width: 100%;
-    height: fit-content;
+    height: 50vh;
+    
+    margin-bottom: 1rem;
 
     h1 {
         color: #FFF;
@@ -76,5 +96,11 @@ onMounted(()=>{
     #chart {
         width: 100% !important;
     }
+}
+
+@media only screen and (max-width: 700px){
+	.overview-card-container {
+    height: 40vh;
+  }
 }
 </style>

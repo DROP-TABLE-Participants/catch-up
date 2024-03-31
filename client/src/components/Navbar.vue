@@ -58,6 +58,7 @@ function onAccountClick() {
     
     width: 90%;
     height: 3.5rem;
+    max-width: 850px;
 
     display: flex;
     flex-direction: row;

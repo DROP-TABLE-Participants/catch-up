@@ -32,7 +32,7 @@ export class ProductService extends WebApiService {
   }
 
   public async getProductTrendHistory(productId: number): AxiosPromise<any> {
-    return await axios.get(BASE_PATH + `/history/product?pk=${productId}`, this.generateHeader())
+    return await axios.get(BASE_PATH + `/api/history/product?pk=${productId}`, this.generateHeader())
   }
 }
 

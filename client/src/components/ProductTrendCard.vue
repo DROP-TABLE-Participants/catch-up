@@ -52,7 +52,7 @@ import ProductGrowthElement from './misc/ProductGrowthElement.vue';
 .main {
     color: white;
     border: 0.5px solid #72A2FF;
-    background: #216DFF;
+    background: #0038FF;
 
     .title-container {
         .title {
