@@ -1,3 +1,5 @@
+[image info](./client/public/catch-up-banner.png)
+
 <h1 align="center">Team Drop Table Participants</h1>
 
 <p align = "center">
