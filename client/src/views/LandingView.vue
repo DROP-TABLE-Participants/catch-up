@@ -15,8 +15,8 @@
   <section class="centered">
     <div class="content">
       <div class="content__text">
-        <p class="heading">Adapt <span>your</span> business<br> to the latest market trends</p>
-        <p class="description">Stay updated on the current <br> market trends of your products and adapt with ease</p>
+        <p class="heading">Adapt your business to the market trends</p>
+        <p class="description">Stay updated on the current market trends of your products and adapt with ease</p>
       </div>
       <div class="content__buttons">
         <router-link to="/test">Test Product</router-link>
@@ -24,10 +24,6 @@
       </div>
     </div>
   </section>
-
-  
-  <video src="../assets/catch-up-video.mp4" autoplay muted></video>
-  <div class="background"></div>
 </template>
 
 <script setup lang="ts">
@@ -38,45 +34,14 @@
   font-family: 'Hanken Grotesk', sans-serif;
 }
 
-video {
-  position: absolute;
-  top: 0;
-  left: 28%;
-  z-index:1;
-  height: 100vh;
-  width: 100vw;
-  moz-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    transform: scaleX(-1);
-    -ms-filter: fliph; /*IE*/
-    filter: fliph; /*IE*/
-}
-
-.background {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #F1F8F7;
-  z-index: 0;
-}
-
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   position: relative;
-  width: 100%;
+  width: 100vw;
   margin-top: 40px;
-  z-index: 3;
-  box-sizing: border-box;
-  padding: 1rem 2rem;
-  border-radius: 50rem;
-  background: rgba(255, 255, 255, 0.225);
-  backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(7, 11, 60, 0.211);
+  max-width: 850px;
 
   &__logo {
     img {
@@ -117,51 +82,44 @@ video {
 }
 
 .centered {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
   display: flex;
-  box-sizing: border-box;
-  padding: 0rem 10rem;
-
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
 }
 
 .content {
   display: flex;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   flex-direction: column;
   position: relative;
-  z-index: 2;
 
   &__text {
-    text-align: left;
+    text-align: center;
     margin-bottom: 4rem;
     gap: 4rem;
 
     .heading {
-      font-size: 1rem;
+      font-size: 2rem;
       font-weight: 700;
       margin-bottom: 1rem;
-      font-size: 55px;
+      font-size: 71px;
       font-style: normal;
       font-weight: 700;
       color: #1B1B1B;
-      font-family:'Montserrat';
-
-      span {
-        color: #3741F2;
-      }
+      width: 725px;
     }
 
     .description {
+      font-size: 1.2rem;
+      font-weight: 500;
       color: #1B1B1B;
-      font-family: "Hanken Grotesk";
-      font-size: 1.5625rem;
+      width: 725px;
+      text-align: center;
+      font-size: 25px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: normal;
     }
   }
@@ -195,11 +153,11 @@ video {
       justify-content: center;
       align-items: center;
       padding: 0.5rem 1rem;
-      border: 2px solid #3741F2;
+      border: 2px solid #40F99B;
       border-radius: 17px;
       width: 150px;
       height: 40px;
-      color: #3741F2;
+      color: #252525;
       text-decoration: none;
       transition: background-color 0.3s;
 

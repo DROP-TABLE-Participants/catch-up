@@ -70,6 +70,7 @@ import router from '../router';
   position: relative;
   width: 100vw;
   margin-top: 40px;
+  max-width: 850px;
 
   &__logo {
     img {

@@ -50,7 +50,7 @@
   
   <style scoped lang="scss">
   * {
-  font-family: 'Hanken Grotesk', sans-serif;
+        font-family: 'Hanken Grotesk', sans-serif;
     }
 
 .navbar {
@@ -60,6 +60,7 @@
   position: relative;
   width: 100vw;
   margin-top: 40px;
+  max-width: 850px;
 
   &__logo {
     img {

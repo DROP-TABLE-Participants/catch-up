@@ -21,7 +21,7 @@
         <div class="content">
             <div class="content__text">
                 <p class="heading">{{ heading }}</p>
-                <p class="description">Based on the below statistics you could look into increasing the supply of the product and expect a bigger sales.</p>
+                <p class="description">Based on the below statistics you could look into increasing the supply of the product or decreasing</p>
             </div>
             <GaugeChart :percentage="fetchedData"/>
         </div>
@@ -78,6 +78,7 @@ onMounted(() => {
   position: relative;
   width: 100vw;
   margin-top: 40px;
+  max-width: 850px;
 
   &__logo {
     img {
