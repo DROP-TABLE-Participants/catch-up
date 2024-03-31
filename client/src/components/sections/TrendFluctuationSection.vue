@@ -4,21 +4,36 @@
         <h2>Trend Fluctuation</h2>
     </div>
 
-    <div class="product-trend-cards-container">
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isAccent="true" :isGrowthUp="true"/>
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isGrowthUp="false"/>
-        <ProductTrendCard :title="'G102 Mouse'" :roundText="'test'" :isGrowthUp="false"/>
+    <div class="product-trend-cards-container" v-if="products.at(0).name">
+        <ProductTrendCard v-for="product in productsHistory" :title="product.product.name" :growth="product.fluctuation" :isGrowthUp="product.fluctuation > 0"  @click="router.push({name:'productView', params:{id:product.product.id}})"/>
     </div>
 </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, onMounted, type Ref, ref } from 'vue';
 import ProductTrendCard from '../ProductTrendCard.vue';
+import productService from '../../services/product-service';
+import router from '../../router';
 
 const props = defineProps<{
     products: any,
 }>();
+
+let productsHistory: Ref<any> = ref([]);
+
+onMounted(()=>{
+    props.products.forEach(async (product)=>{
+        productService.getProductTrendHistory(product.id).then((res)=>{
+            let record = res.data;
+            let fluctuation = record[record.length-2].value / record[record.length-1].value * 100 - 100;
+            productsHistory.value.push({product:product, fluctuation:fluctuation.toFixed(2)});
+            console.log(record)
+        });
+    })
+
+   
+})
 
 
 </script>

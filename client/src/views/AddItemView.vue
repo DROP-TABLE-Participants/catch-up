@@ -20,7 +20,7 @@
             <section class="add-items-container__manual-add-section">
                 <div class="add-items-container__form-group">
                     <label for="itemName" class="add-items-container__label">Item Name</label>
-                    <input type="text" id="itemName" v-model="itemName" placeholder="Name" class="add-items-container__input">
+                    <input type="text" id="itemName" v-model="form.itemName" placeholder="Name" class="add-items-container__input">
                 </div>
 
                 <div class="add-items-container__form-group">
@@ -39,12 +39,22 @@
 <script lang="ts" setup>
 import BackArrowIcon from "../components/icons/BackArrowIcon.vue";
 import { useRouter } from 'vue-router';
+import {ref} from 'vue';
 
 const router = useRouter();
 
 const navigateToItems = () => {
   router.push('/items');
 };
+
+const form = ref({
+    itemName: '',
+
+}) 
+
+function submitForm() {
+
+}
 
 </script>
 
