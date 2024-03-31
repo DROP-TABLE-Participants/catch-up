@@ -55,6 +55,7 @@ class ScraperViewSet(ViewSet):
 
         return Response((history_twitter.value + history_reddit.value) / 2)
 
+
 class HistoryViewSet(ViewSet):
     def list(self, request):
         objects = History.objects.all()
@@ -78,4 +79,3 @@ class HistoryViewSet(ViewSet):
             return Response(HistorySerializer(objects, many=True).data)
         except:
             return Response(status=status.HTTP_404_NOT_FOUND)
-

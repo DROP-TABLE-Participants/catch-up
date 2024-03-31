@@ -45,4 +45,3 @@ class ProductViewSet(ModelViewSet):
             return Response({"error": "You are not the owner of this product"}, status=403)
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
