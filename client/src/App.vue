@@ -24,7 +24,7 @@ import Navbar from './components/Navbar.vue';
     width: 100%;
     height: 100vh;
     max-width: 850px;
-    overflow: scroll;
+    overflow: auto;
 
   }
 
