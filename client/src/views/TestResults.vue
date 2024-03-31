@@ -23,7 +23,7 @@
                 <p class="heading">{{ heading }}</p>
                 <p class="description">Based on the below statistics you could look into increasing the supply of the product or decreasing</p>
             </div>
-            <GaugeChart :percentage="fetchedData"/>
+            <GaugeChart :percentage="12"/>
         </div>
     </section>
 </template>

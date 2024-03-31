@@ -8,6 +8,7 @@ const props = defineProps({
   }
 })
 
+
 const cssTransformRotateValue = computed(() => {
   const percentageAsFraction = props.percentage / 100
   const halfPercentage = percentageAsFraction / 2
@@ -24,13 +25,20 @@ const cssTransformRotateValue = computed(() => {
         <div class="gauge__segment gauge__negative"></div>
         <div class="gauge__segment gauge__positive"></div>
         <div class="gauge__segment gauge__very-positive"></div>
-        <div class="gauge__fill" :style="{ transform: `rotate(${cssTransformRotateValue})` }"></div>
+        <div class="" :style="{ transform: `rotate(${cssTransformRotateValue})` }"></div>
         <div class="gauge__arrow" :style="{ transform: `rotate(${cssTransformRotateValue})` }"></div>
         <div class="gauge__cover">
-          {{ percentage?.toFixed(0) }}%
+          0%
         </div>
       </div>
     </div>
+    <div class="info">
+      <p>Negative</p>
+      <p>Positive</p>
+    </div>
+    <p class="percentage">
+      {{ percentage.toFixed(0) }}%
+    </p>
   </template>
   
   
@@ -42,9 +50,9 @@ const cssTransformRotateValue = computed(() => {
   bottom: 0;
   left: 50%;
   transform-origin: 50% 100%;
-  width: 20px; /* Adjust size as needed */
+  width: 4px; /* Adjust size as needed */
   height: 106px; /* Adjust size as needed */
-  background: #000; /* Color of the arrow */
+  background: #1e1e1e; /* Color of the arrow */
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   transition: transform 0.2s ease-out;
   z-index: 1 ;
@@ -59,7 +67,7 @@ const cssTransformRotateValue = computed(() => {
   width: 100%;
   height: 0;
   padding-bottom: 50%;
-  background: #b4c0be;
+  background: linear-gradient(45deg, #1a889e 0%, #10f175 100%);
   position: relative;
   border-top-left-radius: 100% 200%;
   border-top-right-radius: 100% 200%;
@@ -72,7 +80,7 @@ const cssTransformRotateValue = computed(() => {
   left: 0;
   width: inherit;
   height: 100%;
-  background: #009578;
+  background: #3741F2;
   transform-origin: center top;
   transform: rotate(0turn);
   transition: transform 0.2s ease-out;
@@ -92,12 +100,24 @@ const cssTransformRotateValue = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 25%;
+  padding-bottom: 65%;
   box-sizing: border-box;
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 14px;
 }
 
+ .info {
+  display: flex;
+  justify-content: space-between;
+  gap: 150px;
+  margin: 0 1rem;
+}
+
+.percentage {
+  font-size: 1.7rem;
+  text-align: center;
+  font-weight: 500;
+}
 
 </style>
