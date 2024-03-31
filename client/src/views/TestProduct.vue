@@ -44,12 +44,15 @@ import router from '../router';
   const productName = ref('');
   const productNameValid = ref(true);
 
-  function submitForm() {
+  async function submitForm() {
     if (!productName.value.trim()) {
       productNameValid.value = false;
       return;
     }
-    router.push({ name: 'results', params: { productName: productName.value } });
+    const response = await fetch(`http://localhost:8000/api/test/${productName.value}`);
+    const data = await response.json();
+    const cleanData = decodeURI(data);
+    router.push({ name: 'results', params: { productName: cleanData } });
     }
 
   const isFormValid = ref(true);

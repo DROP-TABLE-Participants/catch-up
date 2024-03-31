@@ -14,21 +14,56 @@
             <router-link to="/register">Sing Up</router-link>
         </div>
     </div>
-    <div class="content">
-        <div class="content__text">
-            <p class="heading">{{ heading }}</p>
-        </div>
-        
+    <div v-if="loading" class="loading-bar">
+        <div class="loading-spinner"></div>
     </div>
+    <section class="centered" v-if="!loading">
+        <div class="content">
+            <div class="content__text">
+                <p class="heading">{{ heading }}</p>
+                <p class="description">Based on the below statistics you could look into increasing the supply of the product and expect a bigger sales.</p>
+            </div>
+            <GaugeChart :percentage="fetchedData"/>
+        </div>
+    </section>
 </template>
 
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
+import GaugeChart from '../components/GaugeChart.vue';
+import { onMounted, ref } from 'vue';
 
 const route = useRoute();
+const apiUrl = 'http://localhost:8000/api/test/';
+const loading = ref(true);
+const fetchedData = ref([]);
 var heading = route.params.productName;
 
+async function fetchData() {
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+      body: JSON.stringify({
+        title: `${route.params.productName}`
+        },
+    )});
+
+    const data = await response.json();
+    fetchedData.value = data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  fetchData();
+});
 </script>
 
 <style scoped lang="scss">
@@ -36,7 +71,7 @@ var heading = route.params.productName;
       font-family: 'Hanken Grotesk', sans-serif;
     }
 
-    .navbar {
+  .navbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -102,7 +137,7 @@ var heading = route.params.productName;
     gap: 4rem;
 
     .heading {
-      font-size: 3.2rem;
+      font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
       font-style: normal;
@@ -221,5 +256,33 @@ var heading = route.params.productName;
       }
     }
   }
+}
+
+.loading-bar {
+    width: 100%;
+    height: 100vh;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Make it circular */
+    border: 4px solid #ccc;
+    border-top-color: #007bff; /* Loading bar color */
+    animation: loading-rotate 1s linear infinite; /* Rotate animation */
+}
+
+@keyframes loading-rotate {
+    to {
+        transform: rotate(360deg); /* Rotate a full circle */
+    }
 }
 </style>

@@ -14,7 +14,6 @@ const cssTransformRotateValue = computed(() => {
 
   return `${halfPercentage}turn`
 })
-
 </script>
 
 <template>
@@ -27,7 +26,7 @@ const cssTransformRotateValue = computed(() => {
         <div class="gauge__fill" :style="{ transform: `rotate(${cssTransformRotateValue})` }"></div>
         <div class="gauge__arrow" :style="{ transform: `rotate(${cssTransformRotateValue})` }"></div>
         <div class="gauge__cover">
-          {{ percentage.toFixed(0) }}%
+          {{ percentage?.toFixed(0) }}%
         </div>
       </div>
     </div>
