@@ -20,6 +20,8 @@
             
         </section>
     </div>
+
+    <Navbar :active="'products'"/>
 </template>
 
 <script lang="ts" setup>
@@ -27,6 +29,7 @@ import { onMounted, type Ref, ref } from 'vue';
 import ProductItem from '../components/ProductItem.vue';
 import { useRouter } from 'vue-router';
 import productService from '../services/product-service';
+import Navbar from '../components/Navbar.vue';
 
 let products: Ref<any> = ref();
 

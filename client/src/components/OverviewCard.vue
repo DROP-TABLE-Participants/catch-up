@@ -1,6 +1,6 @@
 <template>
 <div class="overview-card-container">
-    <h1>Overview</h1>
+    <h1>Trends History</h1>
     <canvas id="chart"></canvas>
 </div>
 </template>

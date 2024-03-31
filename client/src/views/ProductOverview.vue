@@ -16,10 +16,9 @@
             <h2>Item interest is prop</h2>
             <GaugeChart :percentage="25.23"/>
         </section>
-
-
-
     </div>
+
+    <Navbar :active="'products'"/>
 </template>
 
 <script lang="ts" setup>
@@ -29,6 +28,7 @@ import { useRoute, useRouter } from 'vue-router';
 import BackArrowIcon from '../components/icons/BackArrowIcon.vue';
 import GaugeChart from '../components/GaugeChart.vue';
 import productService from '../services/product-service';
+import Navbar from '../components/Navbar.vue';
 
 const route = useRoute();
 const router = useRouter();

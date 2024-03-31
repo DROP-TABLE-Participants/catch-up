@@ -4,6 +4,7 @@
     
     <TrendFluctuationSection v-if="products" :products="products"/>
 </div>
+<Navbar :active="'dashboard'"/>
 </template>
 
 <script lang="ts" setup>
@@ -11,6 +12,7 @@ import { onMounted, type Ref, ref } from 'vue';
 import OverviewCard from '../components/OverviewCard.vue';
 import TrendFluctuationSection from '../components/sections/TrendFluctuationSection.vue';
 import productService from '../services/product-service';
+import Navbar from '../components/Navbar.vue';
 
 let products: Ref<any> = ref();
 let productsHistory: Ref<any> = ref([]);

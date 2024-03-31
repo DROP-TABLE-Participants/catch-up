@@ -34,12 +34,15 @@
             </section>
         </form>
     </div>
+
+    <Navbar :active="'products'"/>
 </template>
 
 <script lang="ts" setup>
 import BackArrowIcon from "../components/icons/BackArrowIcon.vue";
 import { useRouter } from 'vue-router';
 import {ref} from 'vue';
+import Navbar from "../components/Navbar.vue";
 
 const router = useRouter();
 
