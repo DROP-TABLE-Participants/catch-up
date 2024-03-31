@@ -5,7 +5,7 @@
     </div>
 
     <div class="product-trend-cards-container" v-if="products.at(0).name">
-        <ProductTrendCard v-for="product in productsHistory" :title="product.product.name" :growth="product.fluctuation" :isGrowthUp="product.fluctuation > 0"  @click="router.push({name:'productView', params:{id:product.product.id}})"/>
+        <ProductTrendCard v-for="product in productsHistory" :title="product.product.serialized_name" :growth="product.fluctuation" :isGrowthUp="product.fluctuation > 0"  @click="router.push({name:'productView', params:{id:product.product.id}})"/>
     </div>
 </div>
 </template>
@@ -25,8 +25,10 @@ let productsHistory: Ref<any> = ref([]);
 onMounted(()=>{
     props.products.forEach(async (product)=>{
         productService.getProductTrendHistory(product.id).then((res)=>{
+          if (res.data.length < 1) return;
             let record = res.data;
-            let fluctuation = record[record.length-2].value / record[record.length-1].value * 100 - 100;
+            record.sort((a:any, b:any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+            let fluctuation = record[record.length - 1].value;
             productsHistory.value.push({product:product, fluctuation:fluctuation.toFixed(2)});
             console.log(record)
         });

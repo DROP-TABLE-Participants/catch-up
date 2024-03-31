@@ -4,7 +4,7 @@
             <button @click="navigateToItems" class="back-button">
                 <BackArrowIcon />
             </button>
-            <h1 v-if="product">{{product.name}}</h1>
+            <h1 v-if="product">{{product.serialized_name}}</h1>
         </header>
         
         <section class="trend-section">
@@ -15,7 +15,7 @@
         </section>
         <OverviewCard/>
         <h2>The interest is highly positive</h2>
-        <img src="../assets/CatchUp.png" alt="chart" class="chart"/>
+        <img src="../assets/CatchUP.png" alt="chart" class="chart"/>
     </div>
 
     <Navbar :active="'products'"/>
