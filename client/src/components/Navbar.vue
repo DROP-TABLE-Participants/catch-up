@@ -1,8 +1,8 @@
 <template>
 <div class="nav-container"> 
-    <DashboardIcon @click="onDashboardClick" :isActive="isDashboardActive"/>
-    <ItemsIcon @click="onItemsClick" :isActive="isItemsActive"/>
-    <AccountIcon @click="onAccountClick" :isActive="isAccountActive"/>
+    <DashboardIcon @click="onDashboardClick" :isActive="active == 'dashboard'"/>
+    <ItemsIcon @click="onItemsClick" :isActive="active== 'products'"/>
+    <AccountIcon @click="onAccountClick" :isActive="active=='profile'"/>
 </div>
 </template>
 
@@ -11,9 +11,10 @@ import DashboardIcon from './icons/DashboardIcon.vue';
 import ItemsIcon from './icons/ItemsIcon.vue';
 import AccountIcon from './icons/AccountIcon.vue';
 import { useRouter } from 'vue-router';
-import { ref } from 'vue';
 
-const isDashboardActive = ref(true), isItemsActive = ref(false), isAccountActive = ref(false);
+const props = defineProps<{
+  active: string
+}>()
 
 const router = useRouter();
 
@@ -22,23 +23,14 @@ const navigate = (path: string) => {
 };
 
 function onDashboardClick() {
-  isDashboardActive.value = true;
-  isItemsActive.value = false;
-  isAccountActive.value = false;
   navigate('/dashboard')
 }
 
 function onItemsClick() {
-  isDashboardActive.value = false;
-  isItemsActive.value = true;
-  isAccountActive.value = false;
   navigate('/items');
 }
 
 function onAccountClick() {
-  isDashboardActive.value = false;
-  isItemsActive.value = false;
-  isAccountActive.value = true;
   navigate('/account')
 }
 
