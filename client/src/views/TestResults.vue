@@ -23,7 +23,7 @@
                 <p class="heading">{{ heading }}</p>
                 <p class="description">Based on the below statistics you could look into increasing the supply of the product or decreasing</p>
             </div>
-            <GaugeChart :percentage="12"/>
+            <GaugeChart :percentage="fetchedData"/>
         </div>
     </section>
 </template>
@@ -35,9 +35,9 @@ import GaugeChart from '../components/GaugeChart.vue';
 import { onMounted, ref } from 'vue';
 
 const route = useRoute();
-const apiUrl = 'http://localhost:8000/api/test/';
+const apiUrl = 'https://catchupserver.azurewebsites.net/api/test/';
 const loading = ref(true);
-const fetchedData = ref([]);
+const fetchedData = ref(0);
 var heading = route.params.productName;
 
 async function fetchData() {
@@ -53,7 +53,14 @@ async function fetchData() {
     )});
 
     const data = await response.json();
-    fetchedData.value = data;
+    if (data < 1 && data > -1)
+    {
+      fetchedData.value = data * 100;
+    }
+    else
+    {
+      fetchedData.value = data;
+    }
   } catch (error) {
     console.error('Error fetching data:', error);
   } finally {

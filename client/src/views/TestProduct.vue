@@ -49,7 +49,7 @@ import router from '../router';
       productNameValid.value = false;
       return;
     }
-    const response = await fetch(`http://localhost:8000/api/test/${productName.value}`);
+    const response = await fetch(`https://catchupserver.azurewebsites.net/api/test/${productName.value}`);
     const data = await response.json();
     const cleanData = decodeURI(data);
     router.push({ name: 'results', params: { productName: cleanData } });
