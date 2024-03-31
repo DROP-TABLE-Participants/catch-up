@@ -4,7 +4,7 @@
             <h2 class="title">{{ props.title }}</h2>
             <ArrowLinkIcon :class="props.isAccent ? 'light' : ''"/>
         </div>
-        <ProductGrowthElement :percentage="1.24" :isGrowthUp="isGrowthUp"/>
+        <ProductGrowthElement :percentage="growth" :isGrowthUp="isGrowthUp"/>
     </div>
 </template>
 
@@ -16,6 +16,7 @@ import ProductGrowthElement from './misc/ProductGrowthElement.vue';
   const props = defineProps<{
     title: string,
     roundText: string,
+    growth: number,
     isAccent?: boolean,
     isGrowthUp: boolean,
 }>();
@@ -29,6 +30,7 @@ import ProductGrowthElement from './misc/ProductGrowthElement.vue';
 
     box-sizing: border-box;
     padding: 1rem;
+    cursor: pointer;
 
     .title-container {
         display: flex;
