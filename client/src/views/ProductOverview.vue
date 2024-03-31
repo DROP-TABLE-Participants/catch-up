@@ -8,14 +8,14 @@
         </header>
         
         <section class="trend-section">
-            <h2>This item is getting trendy</h2>
-            <canvas ref="chartRef" id="trendChart"></canvas>
+            <!-- <canvas ref="chartRef" id="trendChart"></canvas> -->
         </section>
 
         <section class="interest-section">
-            <h2>Item interest is prop</h2>
-            <GaugeChart :percentage="25.23"/>
         </section>
+        <OverviewCard/>
+        <h2>The interest is highly positive</h2>
+        <img src="../assets/CatchUp.png" alt="chart" class="chart"/>
     </div>
 
     <Navbar :active="'products'"/>
@@ -26,6 +26,7 @@ import { onMounted, ref, type Ref } from 'vue';
 import Chart from 'chart.js/auto';
 import { useRoute, useRouter } from 'vue-router';
 import BackArrowIcon from '../components/icons/BackArrowIcon.vue';
+import OverviewCard from '../components/OverviewCard.vue';
 import GaugeChart from '../components/GaugeChart.vue';
 import productService from '../services/product-service';
 import Navbar from '../components/Navbar.vue';
@@ -120,6 +121,7 @@ h2{
 .product-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 1rem;
 
   header {
@@ -136,10 +138,6 @@ h2{
       line-height: normal;
       margin-left: 1rem;
     }
-
-   
-
-    
 }
 }
 
@@ -149,5 +147,10 @@ h2{
    background: transparent;
 }
 
+.chart {
+  margin-top: 2rem;
+  width: 250px;
+  height: 140px;
+}
 </style>
 
