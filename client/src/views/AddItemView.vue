@@ -43,6 +43,7 @@ import BackArrowIcon from "../components/icons/BackArrowIcon.vue";
 import { useRouter } from 'vue-router';
 import {ref} from 'vue';
 import Navbar from "../components/Navbar.vue";
+import productService from "../services/product-service.ts";
 
 const router = useRouter();
 
@@ -55,8 +56,9 @@ const form = ref({
 
 }) 
 
-function submitForm() {
-
+async function submitForm() {
+  await productService.createProduct(form.value.itemName);
+  navigateToItems();
 }
 
 </script>

@@ -1,8 +1,9 @@
 <template>
     <div class="product-item">
-      <img :src="BASE_PATH + props.item.image_url" :alt="props.item.name" class="product-image" />
+      
+      <img :src="props.item.image_url" :alt="props.item.name" class="product-image" v-if="props.item.image_url != null"/>
       <div class="product-details">
-        <h3 class="product-name">{{ props.item.name }}</h3>
+        <h3 class="product-name">{{ props.item.serialized_name }}</h3>
       </div>
     </div>
   </template>

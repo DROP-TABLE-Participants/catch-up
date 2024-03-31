@@ -23,7 +23,7 @@ export class ProductService extends WebApiService {
   }
 
   public async createProduct(name: string, image?: Blob): AxiosPromise<any> {
-    return await axios.postForm(BASE_PATH + '/api/product/', {name, image_url: image}, this.generateHeader());
+    return await axios.postForm(BASE_PATH + '/api/products/', {name, image_url: image}, this.generateHeader());
   }
 
   public async getProductById(id: number): AxiosPromise<any> {
