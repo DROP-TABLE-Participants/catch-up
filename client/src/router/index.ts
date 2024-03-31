@@ -8,6 +8,7 @@ import LandingView from '../views/LandingView.vue';
 import TestProduct from '../views/TestProduct.vue';
 import TestResults from '../views/TestResults.vue';
 import PricingView from '../views/PricingView.vue';
+import RegisterView from '../views/RegisterView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,6 +18,7 @@ const router = createRouter({
         { path: '/pricing', component: PricingView},
         { path: '/results/:productName?', name:'results', component: TestResults},
         { path: '/login', component: Login},
+        { path: '/register', component: RegisterView},
         { path: '/dashboard', component: Dashboard },
         { path: '/items', component: Items },
         { path: '/addItem', component: AddItem },

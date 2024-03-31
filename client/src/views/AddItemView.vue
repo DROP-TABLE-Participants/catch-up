@@ -49,6 +49,10 @@ const navigateToItems = () => {
 </script>
 
 <style scoped lang="scss">
+    * {
+      font-family: 'Hanken Grotesk', sans-serif;
+    }
+    
 .add-items-container {
     display: flex;
     flex-direction: column;
