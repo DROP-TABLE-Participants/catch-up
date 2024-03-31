@@ -101,6 +101,9 @@ onMounted(()=>{
 @media only screen and (max-width: 700px){
 	.overview-card-container {
     height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 }
 </style>
